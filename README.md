@@ -1,4 +1,6 @@
-<h1 align="center">Procesamiento Digital de Imágenes en Python</h1>
+<h1 align="center">Procesamiento digital de imágenes</h1>
+
+<br>
 
 Este proyecto demuestra cómo manipular los **canales RGB** de una imagen utilizando funciones matemáticas como `sin()` y `cos()` para generar patrones visuales dinámicos desde cero.
 
