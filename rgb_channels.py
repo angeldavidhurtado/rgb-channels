@@ -1,29 +1,45 @@
-from os import name, system
 from PIL import Image
-from math import sin, cos, pi
+import itertools
 
-def main():
-    clear()
+path_img = input("Path img: ")
+img = Image.open( path_img )
+width, heihgt = img.size
+canvas = Image.new( 'RGB', (width, heihgt) )
 
-    canvas = Image.new( 'RGB', (300, 300) )
+# channel permutation
+channel_permutation = list(itertools.permutations(['r', 'g', 'b']))
+for permutation in channel_permutation:
+	for x in range( width ):
+		for y in range( heihgt ):
+			r, g, b = img.getpixel( (x, y) )
+			channels = { "r":r, "g":g, "b":b }
+			canvas.putpixel( (x, y), (
+				channels[permutation[0]],
+				channels[permutation[1]],
+				channels[permutation[2]]
+			) )
+	canvas.save( permutation[0] + permutation[1] + permutation[2] + ".png" )
 
-    for x in range( 300 ):
-        for y in range( 300 ):
-            r = int( sin( pi * x ) )
-            g = int( cos( pi * x * y ) )
-            b = int( sin( pi * y ) )
+# max
+for x in range( width ):
+	for y in range( heihgt ):
+		r, g, b = img.getpixel( (x, y) )
+		m = max(r, g, b)
+		canvas.putpixel( (x, y), (m, m, m) )
+canvas.save( "max.png" )
 
-            # print( '%s %s %s' %(r, g, b) )
-            canvas.putpixel( (x, y), (r, g, b) )
+# min
+for x in range( width ):
+	for y in range( heihgt ):
+		r, g, b = img.getpixel( (x, y) )
+		m = min(r, g, b)
+		canvas.putpixel( (x, y), (m, m, m) )
+canvas.save( "min.png" )
 
-    canvas.save( 'Final.png' )
-    print( 'ok' )
-
-def clear():
-    if name == 'nt':
-        system( 'cls' )
-
-    else:
-        system( 'clear' )
-
-main()
+# average
+for x in range( width ):
+	for y in range( heihgt ):
+		r, g, b = img.getpixel( (x, y) )
+		average = round(sum([r, g, b]) / 3)
+		canvas.putpixel( (x, y), (average, average, average) )
+canvas.save( "average.png" )
