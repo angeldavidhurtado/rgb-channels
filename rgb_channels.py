@@ -6,6 +6,8 @@ img = Image.open( path_img )
 width, heihgt = img.size
 canvas = Image.new( 'RGB', (width, heihgt) )
 
+print("Generating images ...")
+
 # channel permutation
 channel_permutation = list(itertools.permutations(['r', 'g', 'b']))
 for permutation in channel_permutation:
