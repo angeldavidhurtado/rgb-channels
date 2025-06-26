@@ -1,3 +1,5 @@
+<br>
+
 <h1 align="center">Procesamiento digital de imágenes</h1>
 <p align="center">Permutador de canales RGB y escalas de grises</p>
 
@@ -50,3 +52,5 @@ Path img: ruta/imagen/relativa/o/absoluta.jpg
 <p align="center">
   <img src="result.webp" alt="" />
 </p>
+
+<br>
